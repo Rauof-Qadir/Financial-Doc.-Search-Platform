@@ -1,20 +1,25 @@
 
+<div align="center">
 
 # FinDoc AI — Financial Document Intelligence & Search Platform
 
-\<p align="center">   \<strong>Ask questions. Retrieve financial evidence. Get grounded answers.\</strong> \</p>
+**Ask questions. Retrieve financial evidence. Get grounded answers.**
 
-\<p align="center">   An AI-powered financial document intelligence platform that transforms lengthy financial PDFs into searchable, evidence-backed knowledge. \</p>
+An AI-powered financial document intelligence platform that transforms lengthy financial PDFs into searchable, evidence-backed knowledge.
 
-\<p align="center">   \<a href="[https://github.com/Rauof-Qadir/Financial-Doc.-Search-Platform](https://github.com/Rauof-Qadir/Financial-Doc.-Search-Platform)">     \<img src="[https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge\&logo=github)" alt="GitHub Repository">   \</a>   \<img src="[https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge\&logo=python\&logoColor=white)" alt="Python 3.11">   \<img src="[https://img.shields.io/badge/Framework-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?style=for-the-badge\&logo=streamlit\&logoColor=white)" alt="Streamlit">   \<img src="[https://img.shields.io/badge/LLM-Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white](https://img.shields.io/badge/LLM-Gemini-4285F4?style=for-the-badge\&logo=google\&logoColor=white)" alt="Google Gemini">   \<img src="[https://img.shields.io/badge/NLP-Sentence_Transformers-00A98F?style=for-the-badge](https://img.shields.io/badge/NLP-Sentence_Transformers-00A98F?style=for-the-badge)" alt="Sentence Transformers">   \<img src="[https://img.shields.io/badge/Retrieval-BM25%20%2B%20Semantic-7C3AED?style=for-the-badge](https://img.shields.io/badge/Retrieval-BM25%20%2B%20Semantic-7C3AED?style=for-the-badge)" alt="Hybrid Retrieval"> \</p>
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/Rauof-Qadir/Financial-Doc.-Search-Platform)
+![Python 3.11](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Framework-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![Google Gemini](https://img.shields.io/badge/LLM-Gemini-4285F4?style=for-the-badge&logo=google&logoColor=white)
+![Sentence Transformers](https://img.shields.io/badge/NLP-Sentence_Transformers-00A98F?style=for-the-badge)
+![Hybrid Retrieval](https://img.shields.io/badge/Retrieval-BM25%20%2B%20Semantic-7C3AED?style=for-the-badge)
 
-\<p align="center">
-&#x20; \<img src="[https://img.shields.io/badge/Tests-85_Passed-success?style=flat-square](https://img.shields.io/badge/Tests-85_Passed-success?style=flat-square)" alt="85 Tests Passed">
-&#x20; \<img src="[https://img.shields.io/badge/Status-Active_Development-blue?style=flat-square](https://img.shields.io/badge/Status-Active_Development-blue?style=flat-square)" alt="Active Development">
-&#x20; \<img src="[https://img.shields.io/badge/Domain-Financial_NLP-0A7B83?style=flat-square](https://img.shields.io/badge/Domain-Financial_NLP-0A7B83?style=flat-square)" alt="Financial NLP">
-&#x20; \<img src="[https://img.shields.io/badge/License-Not_Yet_Specified-lightgrey?style=flat-square](https://img.shields.io/badge/License-Not_Yet_Specified-lightgrey?style=flat-square)" alt="License not yet specified">
-\</p>
+![85 Tests Passed](https://img.shields.io/badge/Tests-85_Passed-success?style=flat-square)
+![Active Development](https://img.shields.io/badge/Status-Active_Development-blue?style=flat-square)
+![Financial NLP](https://img.shields.io/badge/Domain-Financial_NLP-0A7B83?style=flat-square)
+![License not yet specified](https://img.shields.io/badge/License-Not_Yet_Specified-lightgrey?style=flat-square)
 
+</div>
 ---
 
 ## Table of Contents
