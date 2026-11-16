@@ -25,6 +25,7 @@ An AI-powered financial document intelligence platform that transforms lengthy f
 <p align="center">
   <img src="docs/1.png" alt="FinDoc AI Dashboard" width="850">
 </p>
+
 ## Table of Contents
 
 - [Overview](#overview)
