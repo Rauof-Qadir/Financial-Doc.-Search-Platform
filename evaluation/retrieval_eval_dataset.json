@@ -5,14 +5,16 @@
     "question": "What were Apple's research and development expenses?",
     "relevant_chunk_ids": [
       "apple_annual_report-p031-c001",
-      "apple_annual_report-p026-c003"
+      "apple_annual_report-p026-c003",
+      "apple_annual_report-p050-c003"
     ]
   },
   {
     "question_id": "Q002",
     "question": "How did Apple's revenue change during the year?",
     "relevant_chunk_ids": [
-      "apple_annual_report-p031-c001"
+      "apple_annual_report-p031-c001",
+      "apple_annual_report-p023-c002"
     ]
   },
   {
