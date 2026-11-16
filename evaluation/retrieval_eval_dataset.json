@@ -1,0 +1,25 @@
+
+[
+  {
+    "question_id": "Q001",
+    "question": "What were Apple's research and development expenses?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p031-c001",
+      "apple_annual_report-p026-c003"
+    ]
+  },
+  {
+    "question_id": "Q002",
+    "question": "How did Apple's revenue change during the year?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p031-c001"
+    ]
+  },
+  {
+    "question_id": "Q003",
+    "question": "What caused the increase in Apple's R&D expenses in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p026-c003"
+    ]
+  }
+]
