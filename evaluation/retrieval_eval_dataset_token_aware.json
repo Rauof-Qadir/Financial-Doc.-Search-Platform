@@ -1,0 +1,177 @@
+[
+  {
+    "question_id": "Q001",
+    "question": "What were Apple's research and development expenses?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p031-c001",
+      "apple_annual_report-p026-c003"
+    ]
+  },
+  {
+    "question_id": "Q002",
+    "question": "How did Apple's revenue change during the year?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p023-c002",
+      "apple_annual_report-p031-c001"
+    ]
+  },
+  {
+    "question_id": "Q003",
+    "question": "What caused the increase in Apple's R&D expenses in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p026-c003"
+    ]
+  },
+  {
+    "question_id": "Q004",
+    "question": "What was Apple's total net sales in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p023-c002",
+      "apple_annual_report-p025-c001",
+      "apple_annual_report-p031-c001"
+    ]
+  },
+  {
+    "question_id": "Q005",
+    "question": "What factors contributed to Apple's revenue decline in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p023-c002",
+      "apple_annual_report-p025-c001",
+      "apple_annual_report-p025-c002"
+    ]
+  },
+  {
+    "question_id": "Q006",
+    "question": "How much did Services revenue grow in 2023 compared with 2022?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p025-c001",
+      "apple_annual_report-p025-c003"
+    ]
+  },
+  {
+    "question_id": "Q007",
+    "question": "Why did Mac revenue decline in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p025-c002"
+    ]
+  },
+  {
+    "question_id": "Q008",
+    "question": "What was Apple's total gross margin in 2023 and 2022?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p026-c001"
+    ]
+  },
+  {
+    "question_id": "Q009",
+    "question": "What factors caused the decline in Products gross margin in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p026-c001"
+    ]
+  },
+  {
+    "question_id": "Q010",
+    "question": "What were Apple's R&D expenses from 2021 to 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p031-c001"
+    ]
+  },
+  {
+    "question_id": "Q011",
+    "question": "What primarily drove the increase in R&D expenses in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p026-c003"
+    ]
+  },
+  {
+    "question_id": "Q012",
+    "question": "How much cash did Apple generate from operating activities in 2023 and 2022?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p035-c001",
+      "apple_annual_report-p035-c002"
+    ]
+  },
+  {
+    "question_id": "Q013",
+    "question": "What was Apple's net income in 2023 compared with 2022?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p031-c002"
+    ]
+  },
+  {
+    "question_id": "Q014",
+    "question": "How much cash and marketable securities did Apple hold in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p033-c001",
+      "apple_annual_report-p039-c002",
+      "apple_annual_report-p039-c003"
+    ]
+  },
+  {
+    "question_id": "Q015",
+    "question": "What were Apple's total current assets and total current liabilities in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p033-c001",
+      "apple_annual_report-p033-c002"
+    ]
+  },
+  {
+    "question_id": "Q016",
+    "question": "What were Apple's current and non-current term debt balances in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p033-c002"
+    ]
+  },
+  {
+    "question_id": "Q017",
+    "question": "What was Apple's shareholders' equity in 2023 compared with 2022?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p033-c002",
+      "apple_annual_report-p034-c002"
+    ]
+  },
+  {
+    "question_id": "Q018",
+    "question": "How much did Apple spend on common stock repurchases in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p035-c003"
+    ]
+  },
+  {
+    "question_id": "Q019",
+    "question": "How much did Apple pay in dividends during 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p035-c003",
+      "apple_annual_report-p023-c004"
+    ]
+  },
+  {
+    "question_id": "Q020",
+    "question": "What was Apple's dividend per share in 2023 compared with 2022?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p034-c002"
+    ]
+  },
+  {
+    "question_id": "Q021",
+    "question": "What were Apple's net sales in the Americas and Greater China segments in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p050-c004",
+      "apple_annual_report-p024-c001"
+    ]
+  },
+  {
+    "question_id": "Q022",
+    "question": "Which geographic segment generated the highest operating income for Apple in 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p050-c004"
+    ]
+  },
+  {
+    "question_id": "Q023",
+    "question": "How did Apple's inventory change from 2022 to 2023?",
+    "relevant_chunk_ids": [
+      "apple_annual_report-p033-c001"
+    ]
+  }
+]

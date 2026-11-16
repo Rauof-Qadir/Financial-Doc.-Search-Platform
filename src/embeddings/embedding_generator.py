@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import argparse
 import json
 
 import numpy as np
@@ -8,14 +9,14 @@ from sentence_transformers import SentenceTransformer
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-INPUT_FILE = (
+DEFAULT_INPUT_FILE = (
     PROJECT_ROOT
     / "data"
     / "processed"
     / "apple_annual_report_chunks.json"
 )
 
-OUTPUT_FILE = (
+DEFAULT_OUTPUT_FILE = (
     PROJECT_ROOT
     / "data"
     / "processed"
@@ -24,8 +25,6 @@ OUTPUT_FILE = (
 
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 BATCH_SIZE = 8
-
-
 
 
 def load_chunks(input_file: Path | str) -> list[dict]:
@@ -41,11 +40,12 @@ def load_chunks(input_file: Path | str) -> list[dict]:
     with input_file.open("r", encoding="utf-8") as file:
         data = json.load(file)
 
-    # Support both a JSON list and a dictionary containing "chunks".
     if isinstance(data, list):
         chunks = data
+
     elif isinstance(data, dict) and isinstance(data.get("chunks"), list):
         chunks = data["chunks"]
+
     else:
         raise ValueError(
             "Expected a list of chunks or a dictionary containing a chunks list."
@@ -54,7 +54,10 @@ def load_chunks(input_file: Path | str) -> list[dict]:
     if not chunks:
         raise ValueError("No document chunks found.")
 
+    seen_ids = set()
+
     for index, chunk in enumerate(chunks):
+
         if not isinstance(chunk, dict):
             raise ValueError(
                 f"Chunk at index {index} must be a dictionary."
@@ -65,10 +68,31 @@ def load_chunks(input_file: Path | str) -> list[dict]:
                 f"Chunk at index {index} contains empty or invalid text."
             )
 
-        if not chunk.get("chunk_id"):
+        chunk_id = chunk.get("chunk_id")
+
+        if not chunk_id:
             raise ValueError(
                 f"Chunk at index {index} is missing its chunk_id."
             )
+
+        if chunk_id in seen_ids:
+            raise ValueError(
+                f"Duplicate chunk ID found: {chunk_id}"
+            )
+
+        seen_ids.add(chunk_id)
+
+        required_fields = [
+            "source_file",
+            "page_number",
+            "chunk_index",
+        ]
+
+        for field in required_fields:
+            if field not in chunk:
+                raise ValueError(
+                    f"Chunk {chunk_id} is missing field: {field}"
+                )
 
     print(f"Loaded {len(chunks)} chunks successfully.")
 
@@ -97,7 +121,25 @@ def generate_embeddings(chunks: list[dict]) -> np.ndarray:
         normalize_embeddings=True
     )
 
-    return embeddings.astype(np.float32)
+    embeddings = np.asarray(
+        embeddings,
+        dtype=np.float32
+    )
+
+    if embeddings.ndim != 2:
+        raise ValueError("Generated embeddings must be a 2D array.")
+
+    if len(embeddings) != len(chunks):
+        raise ValueError(
+            "Generated embedding count does not match chunk count."
+        )
+
+    if not np.isfinite(embeddings).all():
+        raise ValueError(
+            "Generated embeddings contain invalid values."
+        )
+
+    return embeddings
 
 
 def save_embeddings(
@@ -112,7 +154,10 @@ def save_embeddings(
             "Number of chunks and embeddings must match."
         )
 
-    output_file.parent.mkdir(parents=True, exist_ok=True)
+    output_file.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
     metadata = [
         {
@@ -138,16 +183,36 @@ def save_embeddings(
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Generate embeddings for financial document chunks."
+    )
+
+    parser.add_argument(
+        "--input-file",
+        type=Path,
+        default=DEFAULT_INPUT_FILE,
+        help="Path to the input chunks JSON file."
+    )
+
+    parser.add_argument(
+        "--output-file",
+        type=Path,
+        default=DEFAULT_OUTPUT_FILE,
+        help="Path where the embeddings NPZ file will be saved."
+    )
+
+    args = parser.parse_args()
+
     print("\nStarting embedding generation...\n")
 
-    chunks = load_chunks(INPUT_FILE)
+    chunks = load_chunks(args.input_file)
 
     embeddings = generate_embeddings(chunks)
 
     save_embeddings(
         chunks,
         embeddings,
-        OUTPUT_FILE
+        args.output_file
     )
 
     print("\nEmbedding generation completed!")
@@ -155,6 +220,7 @@ def main():
     print(f"Embedding shape: {embeddings.shape}")
     print(f"Embedding dimensions: {embeddings.shape[1]}")
     print(f"Data type: {embeddings.dtype}")
+
     print(
         f"Average vector norm: "
         f"{np.linalg.norm(embeddings, axis=1).mean():.4f}"

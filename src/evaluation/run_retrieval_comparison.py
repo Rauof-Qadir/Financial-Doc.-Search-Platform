@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import argparse
 import json
 
 from src.retrieval.semantic_search import SemanticSearchEngine
@@ -16,30 +17,78 @@ from src.evaluation.run_retrieval_evaluation import (
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-REPORT_FILE = (
+DEFAULT_VECTOR_STORE = (
+    PROJECT_ROOT
+    / "data"
+    / "processed"
+    / "apple_annual_report_embeddings.npz"
+)
+
+DEFAULT_REPORT_FILE = (
     PROJECT_ROOT
     / "reports"
     / "retrieval_comparison.json"
 )
 
 
-def main():
-    print("\nFinancial Document Retrieval Benchmark")
-    print("=" * 55)
+def parse_arguments():
+    """Read benchmark configuration from command-line arguments."""
 
-    dataset = load_evaluation_dataset(DATASET_FILE)
+    parser = argparse.ArgumentParser(
+        description="Compare financial document retrieval systems."
+    )
+
+    parser.add_argument(
+        "--dataset-file",
+        type=Path,
+        default=DATASET_FILE,
+        help="Path to the retrieval evaluation dataset."
+    )
+
+    parser.add_argument(
+        "--vector-store",
+        type=Path,
+        default=DEFAULT_VECTOR_STORE,
+        help="Path to the document embedding vector store."
+    )
+
+    parser.add_argument(
+        "--report-file",
+        type=Path,
+        default=DEFAULT_REPORT_FILE,
+        help="Path where the benchmark report will be saved."
+    )
+
+    return parser.parse_args()
+
+
+def main():
+    args = parse_arguments()
+
+    print("\nFinancial Document Retrieval Benchmark")
+    print("=" * 60)
+
+    # 1. Load evaluation dataset.
+    dataset = load_evaluation_dataset(args.dataset_file)
 
     print(f"Evaluation questions: {len(dataset)}")
     print(f"Top K: {TOP_K}")
+    print(f"Dataset: {args.dataset_file}")
+    print(f"Vector store: {args.vector_store}")
 
-    # Load the embedding model only once.
-    semantic_engine = SemanticSearchEngine()
+    # 2. Load the selected embedding model and vector store once.
+    semantic_engine = SemanticSearchEngine(
+        vector_store_file=args.vector_store
+    )
 
-    # Initialize the three retrieval systems.
+    print(f"Corpus chunks: {len(semantic_engine.metadata)}")
+
+    # 3. Initialize BM25 using the exact same corpus.
     bm25_engine = BM25SearchEngine(
         metadata=semantic_engine.metadata
     )
 
+    # 4. Initialize Hybrid using the shared semantic engine.
     hybrid_engine = HybridSearchEngine(
         semantic_engine=semantic_engine
     )
@@ -53,20 +102,24 @@ def main():
     comparison = {
         "top_k": TOP_K,
         "total_questions": len(dataset),
+        "total_corpus_chunks": len(semantic_engine.metadata),
+        "dataset_file": str(args.dataset_file),
+        "vector_store_file": str(args.vector_store),
         "systems": {},
     }
 
-    # Evaluate each system on exactly the same dataset.
+    # 5. Evaluate all systems on the same dataset.
     for system_name, engine in engines.items():
-        print("\n" + "=" * 55)
+
+        print("\n" + "=" * 60)
         print(f"EVALUATING: {system_name.upper()} SEARCH")
-        print("=" * 55)
+        print("=" * 60)
 
         report = evaluate_search(engine, dataset)
 
         comparison["systems"][system_name] = report
 
-    # Compare the average metrics.
+    # 6. Build average metric comparison.
     metric_names = [
         "precision_at_5",
         "recall_at_5",
@@ -77,18 +130,22 @@ def main():
     comparison["summary"] = {}
 
     for metric in metric_names:
+
         comparison["summary"][metric] = {
             system_name: report["average_metrics"][metric]
             for system_name, report in comparison["systems"].items()
         }
 
-    # Save report.
-    REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    # 7. Save report without overwriting another benchmark.
+    args.report_file.parent.mkdir(
+        parents=True,
+        exist_ok=True
+    )
 
-    with REPORT_FILE.open("w", encoding="utf-8") as file:
+    with args.report_file.open("w", encoding="utf-8") as file:
         json.dump(comparison, file, indent=4)
 
-    # Display comparison table.
+    # 8. Display final comparison.
     print("\n\nFINAL RETRIEVAL COMPARISON")
     print("=" * 75)
 
@@ -102,6 +159,7 @@ def main():
     print("-" * 75)
 
     for metric, scores in comparison["summary"].items():
+
         print(
             f"{metric:<20}"
             f"{scores['semantic']:>15.4f}"
@@ -110,7 +168,7 @@ def main():
         )
 
     print("\nBenchmark report saved at:")
-    print(REPORT_FILE)
+    print(args.report_file)
 
     print("\nRetrieval benchmark completed successfully!")
 
