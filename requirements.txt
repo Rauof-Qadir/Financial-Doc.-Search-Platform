@@ -1,2 +1,4 @@
 PyMuPDF
 pytest
+sentence-transformers
+numpy
