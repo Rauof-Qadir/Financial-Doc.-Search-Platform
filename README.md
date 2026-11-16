@@ -1,7 +1,7 @@
 
 <div align="center">
 
-# FinDoc AI — Financial Document Intelligence & Search Platform
+# FinDoc AI (NLP,LLM,RAG) — Financial Document Intelligence & Search Platform
 
 **Ask questions. Retrieve financial evidence. Get grounded answers.**
 
@@ -20,8 +20,11 @@ An AI-powered financial document intelligence platform that transforms lengthy f
 ![License not yet specified](https://img.shields.io/badge/License-Not_Yet_Specified-lightgrey?style=flat-square)
 
 </div>
----
 
+## Dashboard
+<p align="center">
+  <img src="docs/1.png" alt="FinDoc AI Dashboard" width="850">
+</p>
 ## Table of Contents
 
 - [Overview](#overview)
