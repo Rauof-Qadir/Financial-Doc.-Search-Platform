@@ -61,7 +61,25 @@ def _split_sentences(text: str) -> list[str]:
 
 
 def _token_count(text: str, tokenizer) -> int:
-    """Count tokens including special tokens."""
+    """Count actual tokens without padding or truncation."""
+
+    backend = getattr(tokenizer, "backend_tokenizer", None)
+
+    if backend is not None:
+        # Prevent inherited padding/truncation settings from corrupting counts.
+        backend.no_padding()
+        backend.no_truncation()
+
+        encoding = backend.encode(
+            text,
+            add_special_tokens=True
+        )
+        return len(encoding.ids)
+
+    if hasattr(tokenizer, "tokenize"):
+        token_ids = tokenizer.tokenize(text)
+        special_tokens = tokenizer.num_special_tokens_to_add(pair=False)
+        return len(token_ids) + special_tokens
 
     return len(
         tokenizer.encode(

@@ -4,3 +4,6 @@ sentence-transformers
 numpy
 rank-bm25
 faiss-cpu==1.16.0
+streamlit
+google-genai
+python-dotenv

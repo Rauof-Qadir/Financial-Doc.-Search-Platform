@@ -2,13 +2,14 @@
 __pycache__/
 *.py[cod]
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 
 # Environment variables and secrets
 .env
 .env.*
+!.env.example
 
 # Model files
 *.joblib
@@ -27,7 +28,7 @@ data/sample/*
 # Vector database
 vector_store/*
 
-# Reports generated locally
+# Generated reports
 reports/*
 
 # Jupyter
